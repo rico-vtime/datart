@@ -2,8 +2,10 @@
 # IDE
 .idea
 .DS_Store
-
+/.vscode
 /static
+/logs
+/bin
 
 /server/src/main/resources/javascript/**
 **/target/**
