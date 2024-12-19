@@ -190,6 +190,9 @@ public class DataProviderServiceImpl extends BaseService implements DataProvider
         if (securityManager.isOrgOwner(source.getOrgId())) {
             disablePermissionVariables(variables);
         }
+
+        log.info("test variables: {}", JSON.toJSONString(variables));
+
         QueryScript queryScript = QueryScript.builder()
                 .test(true)
                 .sourceId(source.getId())
@@ -241,6 +244,8 @@ public class DataProviderServiceImpl extends BaseService implements DataProvider
         if (securityManager.isOrgOwner(view.getOrgId())) {
             disablePermissionVariables(variables);
         }
+
+        log.info("variables: {}", JSON.toJSONString(variables));
 
         QueryScript queryScript = QueryScript.builder()
                 .test(false)

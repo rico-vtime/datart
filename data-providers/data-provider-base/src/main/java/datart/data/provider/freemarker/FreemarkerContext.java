@@ -17,13 +17,16 @@
  */
 package datart.data.provider.freemarker;
 
+import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import freemarker.template.TemplateException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.DigestUtils;
 
+import java.io.IOException;
 import java.io.StringWriter;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 public class FreemarkerContext {
@@ -52,4 +55,42 @@ public class FreemarkerContext {
         return content;
     }
 
+
+    public static void main(String[] args) throws IOException, TemplateException {
+        // 创建 FreeMarker 配置对象
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
+        // 假设模板位于项目的 classpath 下的 "templates" 文件夹中
+        cfg.setTemplateLoader(new ClassTemplateLoader(FreemarkerContext.class, "/templates"));
+        cfg.setDefaultEncoding("UTF-8");
+        cfg.setLocale(java.util.Locale.CHINA);
+        cfg.setTemplateExceptionHandler(freemarker.template.TemplateExceptionHandler.HTML_DEBUG_HANDLER);
+
+        // Step 2: 加载模板
+        Template template = cfg.getTemplate("test.ftl");
+        // 准备数据
+        HashSet<String> airlineCodes = new HashSet<>();
+        airlineCodes.add("EU");
+        airlineCodes.add("CA");
+
+        HashSet<String> compareResult = new HashSet<>();
+        // compareResult.add("全部");
+        compareResult.add("优势");
+
+        HashSet<String> resultValidFilters = new HashSet<>();
+        // compareResult.add("全部");
+        resultValidFilters.add("1");
+        // 创建数据模型
+        Map<String, Object> dataModel = new HashMap<>();
+        dataModel.put("AIRLINE_CODE", airlineCodes);
+        dataModel.put("COMPARE_RESULT", compareResult);
+        // dataModel.put("RESULT_VALID_FILTER", resultValidFilters);
+        dataModel.put("RESULT_VALID_FILTER", "0");
+
+        // 合并数据模型和模板
+        StringWriter writer = new StringWriter();
+        template.process(dataModel, writer);
+
+        // 输出结果
+        System.out.println(writer.toString());
+    }
 }

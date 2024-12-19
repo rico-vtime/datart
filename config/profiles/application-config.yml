@@ -64,9 +64,10 @@ spring:
 
 # redis config
 
-#  redis:
-#    port: 6379
-#    host: { HOST }
+  redis:
+    port: 16379
+    host: { HOST }
+    auth: Q%odIu4sv2S7O#
 
 
 server:
@@ -86,7 +87,7 @@ datart:
     address: ${datart.address:http://127.0.0.1:8080}
 
   # 租户管理模式：platform-平台(默认)，team-团队
-  tenant-management-mode: platform
+  tenant-management-mode: team
 
   user:
     register: true # 是否允许注册

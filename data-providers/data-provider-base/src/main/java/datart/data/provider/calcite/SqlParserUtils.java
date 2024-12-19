@@ -34,7 +34,8 @@ public class SqlParserUtils {
     }
 
     public static SqlParser createParser(String sql, SqlDialect sqlDialect) {
-        SqlParser.Config config = SqlParser.config()
+        SqlParser.Config config = SqlParser.config();
+        config
                 .withParserFactory(SqlParserImpl.FACTORY)
                 .withConformance(SqlConformanceEnum.LENIENT)
                 .withUnquotedCasing(sqlDialect.getUnquotedCasing())

@@ -63,4 +63,11 @@ public class CustomPluginServiceImpl implements CustomPluginService {
                 .map(name -> FileUtils.concatPath(CUSTOM_JS_PATH, name))
                 .collect(Collectors.toSet());
     }
+
+
+    public static void main(String[] args) throws MalformedURLException {
+        CustomPluginServiceImpl impl = new CustomPluginServiceImpl();
+        Set<String> strings = impl.scanCustomChartPlugins();
+        System.out.println(strings);
+    }
 }

@@ -47,7 +47,6 @@ class PluginChartLoader {
         if (!result) {
           return Promise.resolve(result);
         }
-
         /* Known Issue: file path only allow in src folder by create-react-app file scope limitation by CRA
          * Git Issue: https://github.com/facebook/create-react-app/issues/5563
          * Suggestions: Use es6 `import` api to load file and compatible with ES Modules

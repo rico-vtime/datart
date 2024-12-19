@@ -281,6 +281,7 @@ public class UserServiceImpl extends BaseService implements UserService {
         try {
             securityManager.login(passwordToken);
         } catch (Exception e) {
+            e.printStackTrace();
             String tokenStr = ldapLogin(passwordToken);
             if (StringUtils.isNotBlank(tokenStr)) {
                 return tokenStr;

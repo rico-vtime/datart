@@ -221,6 +221,7 @@ public class JdbcDataProviderAdapter implements Closeable {
      * @throws SQLException SQL执行异常
      */
     protected Dataframe execute(String sql) throws SQLException {
+        log.info("**********************************" + sql);
         try (Connection conn = getConn()) {
             try (Statement statement = conn.createStatement()) {
                 try (ResultSet rs = statement.executeQuery(sql)) {
